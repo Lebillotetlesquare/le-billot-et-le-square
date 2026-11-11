@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Notre carte de saison — Le Billot &amp; le Square</title>
+
+  <meta
+    name="description"
+    content="Découvrez notre carte des fêtes 2026 : entrées, volailles fermières, rôtis farcis, côtes de bœuf maturées, gibiers et accompagnements."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* HEADER COMMUN */
+
+    .internal-header {
+      background: #0c0b0a;
+      color: white;
+    }
+
+    .internal-header .site-header {
+      border-bottom: 1px solid rgba(255,255,255,.16);
+    }
+
+    /* MENU MOBILE */
+
+    .menu-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,.45);
+      background: rgba(0,0,0,.12);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      position: relative;
+      z-index: 1002;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 21px;
+      height: 1.5px;
+      background: white;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+
+    .menu-toggle.is-open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .menu-toggle.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.is-open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    /* PALETTE DE LA CARTE DES FÊTES */
+
+    .festive-page {
+      --festive-green: #183d33;
+      --festive-green-dark: #112d26;
+      --festive-ivory: #f8f5ef;
+      --festive-gold: #d2b77e;
+      --festive-gold-dark: #866a35;
+      --festive-text: #514b44;
+      --festive-line: #d9cebb;
+      background: var(--festive-ivory);
+    }
+
+    .festive-page,
+    .festive-page * {
+      box-sizing: border-box;
+    }
+
+    /* INTRODUCTION */
+
+    .season-intro {
+      position: relative;
+      overflow: hidden;
+      padding: 72px 0 68px;
+      background:
+        radial-gradient(
+          ellipse at 85% 35%,
+          rgba(112,145,101,.13),
+          transparent 60%
+        ),
+        var(--festive-green-dark);
+      border-bottom: 3px solid var(--festive-gold);
+      color: var(--festive-ivory);
+    }
+
+    .season-intro-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      align-items: center;
+      gap: 35px;
+    }
+
+    .season-intro-copy {
+      position: relative;
+      z-index: 1;
+      min-width: 0;
+    }
+
+    .season-intro .section-kicker {
+      margin: 0 0 26px;
+      color: var(--festive-gold);
+      font-family: "Montserrat", Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      line-height: 1.7;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
+
+    .season-intro .season-page-title {
+      max-width: 760px;
+      margin: 0;
+      color: var(--festive-ivory);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(58px, 6.8vw, 94px);
+      font-weight: 400;
+      line-height: .98;
+      letter-spacing: -.035em;
+    }
+
+    .season-page-title em {
+      color: var(--festive-gold);
+      font-style: normal;
+    }
+
+    .season-edition {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 27px 0 22px;
+      color: var(--festive-gold);
+      font-family: "Montserrat", Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.8;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .season-edition::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: var(--festive-gold);
+    }
+
+    .season-description {
+      max-width: 580px;
+      margin: 0;
+      color: #e2e5db;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    /* ILLUSTRATION DORÉE */
+
+    .season-art {
+      width: 100%;
+      max-width: 370px;
+      justify-self: end;
+      color: var(--festive-gold);
+      pointer-events: none;
+    }
+
+    .season-art svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    /* CARTE */
+
+    .season-menu {
+      padding: 55px 0 75px;
+      background: var(--festive-ivory);
+      color: var(--festive-text);
+    }
+
+    .season-menu-heading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin: 0 0 35px;
+      color: var(--festive-gold-dark);
+      text-align: center;
+    }
+
+    .season-menu-heading::before,
+    .season-menu-heading::after {
+      content: "";
+      width: 75px;
+      height: 1px;
+      background: var(--festive-line);
+    }
+
+    .season-menu-heading span {
+      font-family: "Montserrat", Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      line-height: 1.8;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+    }
+
+    .season-menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid var(--festive-line);
+    }
+
+    .season-category {
+      min-width: 0;
+      padding: 35px 0 40px;
+      border-bottom: 1px solid var(--festive-line);
+    }
+
+    .season-category:nth-child(odd) {
+      padding-right: 55px;
+      border-right: 1px solid var(--festive-line);
+    }
+
+    .season-category:nth-child(even) {
+      padding-left: 55px;
+    }
+
+    .season-category-ornament {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 18px;
+      color: var(--festive-gold-dark);
+      font-size: 19px;
+      line-height: 1;
+    }
+
+    .season-category-ornament::after {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: #bca26d;
+    }
+
+    .season-category h2 {
+      margin: 0 0 22px;
+      color: var(--festive-green);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(36px, 3.5vw, 47px);
+      font-weight: 500;
+      line-height: 1.06;
+      letter-spacing: -.025em;
+    }
+
+    .season-category h3 {
+      margin: 25px 0 10px;
+      color: var(--festive-gold-dark);
+      font-family: "Montserrat", Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 1.8;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .season-category h2 + h3 {
+      margin-top: 0;
+    }
+
+    .season-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .season-list li {
+      position: relative;
+      margin: 0;
+      padding: 6px 0 6px 18px;
+      color: var(--festive-text);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .season-list li::before {
+      content: "";
+      position: absolute;
+      top: 16px;
+      left: 1px;
+      width: 4px;
+      height: 4px;
+      background: #a48954;
+      transform: rotate(45deg);
+    }
+
+    .season-category-note {
+      margin: 22px 0 0;
+      padding: 17px 20px;
+      border-left: 2px solid #bca26d;
+      background: #eee9df;
+      color: #615748;
+      font-size: 13px;
+      line-height: 1.85;
+    }
+
+    /* VŒUX DE FIN D’ANNÉE */
+
+    .season-closing {
+      padding: 52px 0 58px;
+      background: var(--festive-green-dark);
+      border-top: 1px solid #a58b58;
+      color: var(--festive-ivory);
+      text-align: center;
+    }
+
+    .season-closing-ornament {
+      display: block;
+      margin-bottom: 18px;
+      color: var(--festive-gold);
+      font-size: 25px;
+      line-height: 1;
+    }
+
+    .season-closing .section-kicker {
+      margin-bottom: 20px;
+      color: var(--festive-gold);
+    }
+
+    .season-closing-message {
+      max-width: 780px;
+      margin: 0 auto;
+      color: var(--festive-ivory);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(32px, 4vw, 47px);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    /* NAVIGATION MOBILE */
+
+    @media (max-width: 1100px) {
+      .site-header {
+        grid-template-columns: 1fr auto;
+      }
+
+      .main-nav,
+      .header-cta {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .mobile-menu {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        padding: 120px 28px 42px;
+        background: rgba(12,11,10,.985);
+        color: white;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-12px);
+        transition:
+          opacity .25s ease,
+          visibility .25s ease,
+          transform .25s ease;
+        overflow-y: auto;
+      }
+
+      .mobile-menu.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .mobile-menu-inner {
+        width: min(100%, 620px);
+        margin: 0 auto;
+      }
+
+      .mobile-menu-label {
+        margin: 0 0 16px;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: .25em;
+        color: rgba(255,255,255,.42);
+      }
+
+      .mobile-menu-group {
+        padding: 25px 0;
+        border-bottom: 1px solid rgba(255,255,255,.14);
+      }
+
+      .mobile-menu-main-link {
+        display: block;
+        padding: 9px 0;
+        color: white;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(35px, 8vw, 48px);
+        line-height: 1;
+        text-decoration: none;
+      }
+
+      .mobile-submenu {
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+        margin-top: 20px;
+        padding-left: 17px;
+        border-left: 1px solid rgba(255,255,255,.25);
+      }
+
+      .mobile-submenu a {
+        color: rgba(255,255,255,.72);
+        font-size: 14px;
+        line-height: 1.5;
+        text-decoration: none;
+      }
+
+      .mobile-menu-footer {
+        margin-top: 45px;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: .19em;
+        color: rgba(255,255,255,.36);
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+    }
+
+    /* TABLETTE */
+
+    @media (max-width: 900px) {
+      .season-intro {
+        padding: 60px 0;
+      }
+
+      .season-intro-grid {
+        grid-template-columns: 1.5fr .65fr;
+        gap: 15px;
+      }
+
+      .season-category:nth-child(odd) {
+        padding-right: 30px;
+      }
+
+      .season-category:nth-child(even) {
+        padding-left: 30px;
+      }
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+      .menu-toggle {
+        width: 42px;
+        height: 42px;
+      }
+
+      .mobile-menu {
+        padding: 105px 20px 36px;
+      }
+
+      .season-intro {
+        padding: 48px 0 44px;
+      }
+
+      .season-intro-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .season-intro .section-kicker {
+        margin-bottom: 23px;
+        padding-right: 55px;
+        font-size: 9px;
+        letter-spacing: .18em;
+      }
+
+      .season-intro .season-page-title {
+        font-size: clamp(52px, 12vw, 70px);
+      }
+
+      .season-art {
+        position: absolute;
+        top: -52px;
+        right: -46px;
+        width: 155px;
+        opacity: .23;
+      }
+
+      .season-edition {
+        gap: 12px;
+        margin-top: 23px;
+        font-size: 10px;
+        letter-spacing: .1em;
+      }
+
+      .season-edition::before {
+        width: 25px;
+      }
+
+      .season-description {
+        font-size: 13px;
+        line-height: 1.85;
+      }
+
+      .season-menu {
+        padding: 35px 0 45px;
+      }
+
+      .season-menu-heading {
+        gap: 14px;
+        margin-bottom: 25px;
+      }
+
+      .season-menu-heading::before,
+      .season-menu-heading::after {
+        width: 30px;
+      }
+
+      .season-menu-heading span {
+        font-size: 9px;
+        letter-spacing: .15em;
+      }
+
+      .season-menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .season-category,
+      .season-category:nth-child(odd),
+      .season-category:nth-child(even) {
+        padding: 30px 0;
+        border-right: 0;
+      }
+
+      .season-category h2 {
+        font-size: 38px;
+        margin-bottom: 19px;
+      }
+
+      .season-closing {
+        padding: 40px 0 45px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER COMMUN -->
+
+  <div class="internal-header">
+    <header class="site-header">
+
+      <a href="index.html" class="brand">
+        <span class="brand-main">Le Billot &amp; le Square</span>
+        <span class="brand-sub">Boucheries artisanales · Paris</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navigation principale">
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-button" type="button">
+            Nos boutiques
+            <span class="nav-arrow">⌄</span>
+          </button>
+
+          <div class="dropdown-menu">
+            <a href="billot-de-daguerre.html">Le Billot de Daguerre</a>
+            <a href="boucherie-du-square.html">Boucherie du Square</a>
+          </div>
+        </div>
+
+        <a href="nos-produits.html">Nos produits</a>
+        <a href="la-maison.html">La Maison</a>
+        <a href="carte-de-saison.html" aria-current="page">
+          Notre carte de saison
+        </a>
+      </nav>
+
+      <a href="nos-produits.html" class="header-cta">
+        Voir nos produits
+        <span aria-hidden="true">→</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </header>
+  </div>
+
+  <!-- MENU MOBILE -->
+
+  <nav
+    class="mobile-menu"
+    id="mobileMenu"
+    aria-label="Navigation mobile"
+  >
+    <div class="mobile-menu-inner">
+
+      <div class="mobile-menu-group">
+        <p class="mobile-menu-label">Nos boutiques</p>
+        <div class="mobile-submenu">
+          <a href="billot-de-daguerre.html">Le Billot de Daguerre</a>
+          <a href="boucherie-du-square.html">Boucherie du Square</a>
+        </div>
+      </div>
+
+      <div class="mobile-menu-group">
+        <a href="nos-produits.html" class="mobile-menu-main-link">
+          Nos produits
+        </a>
+      </div>
+
+      <div class="mobile-menu-group">
+        <a href="la-maison.html" class="mobile-menu-main-link">
+          La Maison
+        </a>
+      </div>
+
+      <div class="mobile-menu-group">
+        <a
+          href="carte-de-saison.html"
+          class="mobile-menu-main-link"
+          aria-current="page"
+        >
+          Notre carte de saison
+        </a>
+      </div>
+
+      <div class="mobile-menu-footer">
+        Le Billot &amp; le Square · Paris
+      </div>
+
+    </div>
+  </nav>
+
+  <main class="festive-page">
+
+    <!-- INTRODUCTION DES FÊTES -->
+
+    <section class="season-intro" aria-labelledby="season-title">
+      <div class="container season-intro-grid">
+
+        <div class="season-intro-copy">
+          <p class="section-kicker">Notre carte de saison</p>
+
+          <h1 id="season-title" class="season-page-title">
+            À votre table<br>
+            <em>pour les fêtes</em>
+          </h1>
+
+          <p class="season-edition">
+            Noël &amp; Nouvel An · 2026
+          </p>
+
+          <p class="season-description">
+            Foie gras, volailles fermières, rôtis farcis et côtes
+            de bœuf maturées : découvrez notre sélection pour
+            vos repas de fête.
+          </p>
+        </div>
+
+        <!-- DÉCOR VECTORIEL : AUCUN FICHIER IMAGE NÉCESSAIRE -->
+
+        <div class="season-art" aria-hidden="true">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 400 400"
+            fill="none"
+            focusable="false"
+          >
+            <defs>
+              <!-- Branche de sapin -->
+              <g
+                id="festive-pine"
+                stroke="currentColor"
+                stroke-width="1.3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M0 0 C12 -52 6 -112 0 -174"/>
+
+                <path d="
+                  M3 -20 L-30 -45
+                  M4 -31 L-39 -65
+                  M5 -43 L-38 -82
+                  M5 -56 L-35 -99
+                  M5 -70 L-30 -113
+                  M4 -84 L-25 -126
+                  M3 -99 L-20 -140
+                  M2 -114 L-14 -150
+                  M1 -131 L-9 -160
+
+                  M3 -20 L32 -47
+                  M4 -32 L41 -67
+                  M5 -45 L41 -85
+                  M5 -58 L37 -102
+                  M5 -72 L32 -118
+                  M4 -87 L26 -132
+                  M3 -102 L20 -144
+                  M2 -117 L14 -154
+                  M1 -133 L8 -163
+                "/>
+              </g>
+
+              <!-- Étoile à quatre branches -->
+              <path
+                id="festive-star"
+                d="M0 -12 L2.5 -2.5 L12 0 L2.5 2.5
+                   L0 12 L-2.5 2.5 L-12 0 L-2.5 -2.5 Z"
+                fill="currentColor"
+              />
+            </defs>
+
+            <!-- Cercle ouvert -->
+            <path
+              d="M103 93 A146 146 0 1 1 88 289"
+              stroke="currentColor"
+              stroke-width=".8"
+              opacity=".4"
+            />
+            <path
+              d="M117 102 A130 130 0 0 1 324 245"
+              stroke="currentColor"
+              stroke-width=".6"
+              opacity=".3"
+            />
+
+            <!-- Composition végétale -->
+            <g opacity=".85">
+              <use href="#festive-pine"
+                transform="translate(204 326) rotate(-44) scale(1.12)"/>
+              <use href="#festive-pine"
+                transform="translate(204 326) rotate(-16) scale(1.28)"/>
+              <use href="#festive-pine"
+                transform="translate(204 326) rotate(20) scale(1.08)"/>
+              <use href="#festive-pine"
+                transform="translate(204 326) rotate(53) scale(.85)"/>
+            </g>
+
+            <!-- Ruban -->
+            <g
+              stroke="currentColor"
+              stroke-width="1.3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M196 321 C166 287 147 308 174 321
+                       C183 325 192 324 204 322"/>
+              <path d="M205 322 C222 287 246 302 226 318
+                       C220 323 213 324 204 322"/>
+              <path d="M200 325 Q190 346 173 356 L178 341"/>
+              <path d="M206 325 Q214 345 234 353 L228 339"/>
+            </g>
+
+            <!-- Étoiles -->
+            <use href="#festive-star"
+              transform="translate(286 77) scale(.9)"/>
+            <use href="#festive-star"
+              transform="translate(84 183) scale(.55)"/>
+            <use href="#festive-star"
+              transform="translate(324 271) scale(.7)"/>
+            <use href="#festive-star"
+              transform="translate(130 58) scale(.45)"/>
+
+            <g fill="currentColor" opacity=".75">
+              <circle cx="106" cy="124" r="2"/>
+              <circle cx="310" cy="132" r="1.8"/>
+              <circle cx="342" cy="218" r="2"/>
+              <circle cx="114" cy="290" r="1.8"/>
+              <circle cx="268" cy="330" r="1.5"/>
+              <circle cx="230" cy="62" r="1.5"/>
+            </g>
+          </svg>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CARTE DES FÊTES -->
+
+    <section class="season-menu" aria-label="La carte des fêtes 2026">
+      <div class="container">
+
+        <div class="season-menu-heading">
+          <span>La sélection des fêtes</span>
+        </div>
+
+        <div class="season-menu-grid">
+
+          <!-- ENTRÉES -->
+
+          <article class="season-category">
+            <span class="season-category-ornament" aria-hidden="true">✧</span>
+            <h2>Les entrées</h2>
+
+            <ul class="season-list">
+              <li>Foie gras de canard mi-cuit</li>
+              <li>Saumon fumé d’Écosse Label Rouge</li>
+              <li>Boudins blancs au champagne, aux morilles ou truffés</li>
+              <li>Escargots de Bourgogne</li>
+              <li>Coquilles Saint-Jacques à la normande</li>
+              <li>Vol-au-vent aux ris de veau</li>
+              <li>Soufflé aux morilles et à la truffe</li>
+              <li>Tourte aux ris de veau</li>
+              <li>Mini-ballottines de faisan aux pommes</li>
+              <li>Mini-ballottines de chevreuil aux châtaignes</li>
+              <li>Mini-ballottines de canard au foie gras</li>
+            </ul>
+
+            <p class="season-category-note">
+              Également à découvrir : notre foie gras de canard
+              du Sud-Ouest, cru extra éveiné ou mi-cuit entier.
+            </p>
+          </article>
+
+          <!-- VOLAILLES FERMIÈRES -->
+
+          <article class="season-category">
+            <span class="season-category-ornament" aria-hidden="true">✧</span>
+            <h2>Les volailles fermières</h2>
+
+            <h3>La Bresse · AOP</h3>
+            <ul class="season-list">
+              <li>Chapon de Bresse roulé</li>
+              <li>Poularde de Bresse roulée</li>
+              <li>Dinde de Bresse</li>
+              <li>Poulet de Bresse</li>
+            </ul>
+
+            <h3>Les Landes · Label Rouge IGP</h3>
+            <ul class="season-list">
+              <li>Chapon fermier</li>
+              <li>Dinde fermière</li>
+              <li>Poularde fermière</li>
+              <li>Chapon de pintade fermier</li>
+            </ul>
+
+            <h3>Également à la carte</h3>
+            <ul class="season-list">
+              <li>Oie fermière d’Anjou</li>
+            </ul>
+          </article>
+
+          <!-- RÔTIS DE VOLAILLES FARCIS -->
+
+          <article class="season-category">
+            <span class="season-category-ornament" aria-hidden="true">✧</span>
+            <h2>Les rôtis de volailles farcis</h2>
+
+            <ul class="season-list">
+              <li>Rôti de chapon aux morilles et au foie gras</li>
+              <li>Rôti de chapon aux figues et au foie gras</li>
+              <li>Rôti de chapon aux marrons</li>
+              <li>Rôti de pintade aux girolles</li>
+              <li>Rôti de canette aux cèpes</li>
+            </ul>
+          </article>
+
+          <!-- CÔTES DE BŒUF MATURÉES -->
+
+          <article class="season-category">
+            <span class="season-category-ornament" aria-hidden="true">✧</span>
+            <h2>Les côtes de bœuf maturées</h2>
+
+            <ul class="season-list">
+              <li>Wagyu Kagoshima</li>
+              <li>Galice Roxa d’Ouro</li>
+              <li>Black Pearl</li>
+              <li>Yakuza</li>
+              <li>Salers</li>
+              <li>Normande</li>
+            </ul>
+          </article>
+
+          <!-- GIBIERS -->
+
+          <article class="season-category">
+            <span class="season-category-ornament" aria-hidden="true">✧</span>
+            <h2>Les gibiers</h2>
+
+            <ul class="season-list">
+              <li>Filet de biche</li>
+              <li>Gigue de chevreuil</li>
+              <li>Sanglier</li>
+              <li>Faisan</li>
+            </ul>
+          </article>
+
+          <!-- ACCOMPAGNEMENTS -->
+
+          <article class="season-category">
+            <span class="season-category-ornament" aria-hidden="true">✧</span>
+            <h2>Les accompagnements</h2>
+
+            <ul class="season-list">
+              <li>Gratin dauphinois</li>
+              <li>Gratin truffé</li>
+              <li>Pommes dauphine</li>
+              <li>Beignets de courgettes</li>
+              <li>Marrons confits</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- VŒUX -->
+
+    <section class="season-closing" aria-label="Vœux de fin d’année">
+      <div class="container">
+        <span class="season-closing-ornament" aria-hidden="true">✧</span>
+        <p class="section-kicker">Le Billot &amp; le Square</p>
+        <p class="season-closing-message">
+          Nous vous souhaitons de belles fêtes<br>
+          et de délicieux moments à partager.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER COMMUN -->
+
+  <footer class="footer">
+    <div class="container footer-top">
+
+      <div>
+        <div class="footer-brand">Le Billot &amp; le Square</div>
+        <p>
+          Deux boucheries artisanales à Paris,<br>
+          dans les 14ᵉ et 15ᵉ arrondissements.
+        </p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Navigation de pied de page">
+        <a href="billot-de-daguerre.html">Le Billot de Daguerre</a>
+        <a href="boucherie-du-square.html">Boucherie du Square</a>
+        <a href="nos-produits.html">Nos produits</a>
+        <a href="la-maison.html">La Maison</a>
+        <a href="carte-de-saison.html">Notre carte de saison</a>
+      </nav>
+
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© Le Billot &amp; le Square</span>
+      <div>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT MENU MOBILE -->
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    function closeMobileMenu() {
+      menuToggle.classList.remove("is-open");
+      mobileMenu.classList.remove("is-open");
+      document.body.classList.remove("menu-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Ouvrir le menu");
+    }
+
+    function openMobileMenu() {
+      menuToggle.classList.add("is-open");
+      mobileMenu.classList.add("is-open");
+      document.body.classList.add("menu-open");
+      menuToggle.setAttribute("aria-expanded", "true");
+      menuToggle.setAttribute("aria-label", "Fermer le menu");
+    }
+
+    menuToggle.addEventListener("click", function () {
+      if (mobileMenu.classList.contains("is-open")) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+
+    mobileMenu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeMobileMenu);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (
+        event.key === "Escape" &&
+        mobileMenu.classList.contains("is-open")
+      ) {
+        closeMobileMenu();
+        menuToggle.focus();
+      }
+    });
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 1100) {
+        closeMobileMenu();
+      }
+    });
+  </script>
+
+</body>
+</html>
